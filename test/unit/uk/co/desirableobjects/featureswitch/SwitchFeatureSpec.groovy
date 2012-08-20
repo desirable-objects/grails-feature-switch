@@ -13,6 +13,7 @@ class SwitchFeatureSpec extends Specification {
     void setup() {
 
         InnocentClass.metaClass.withFeature = { String feature, Closure closure -> service.withFeature(feature, closure) }
+        InnocentClass.metaClass.withoutFeature = { String feature, Closure closure -> service.withoutFeature(feature, closure) }
 
     }
 
@@ -58,6 +59,20 @@ class SwitchFeatureSpec extends Specification {
 
         expect:
             new InnocentClass().testWith() == enabled
+
+        where:
+            enabled << [true, false]
+
+    }
+
+    @Unroll
+    def 'User can use withoutFeature in a class which is decorated with it, where feature = #enabled'() {
+
+        given:
+            service.grailsApplication.config.features.eggs.enabled = enabled
+
+        expect:
+            new InnocentClass().testWithout() == !enabled
 
         where:
             enabled << [true, false]

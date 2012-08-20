@@ -1,5 +1,14 @@
 // configuration for plugin testing - will not be included in the plugin zip
 
+features {
+    alwaysOn {
+        enabled = true
+    }
+    alwaysOff {
+        enabled = false
+    }
+}
+
 log4j = {
     // Example of changing the log pattern for the default console
     // appender:

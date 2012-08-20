@@ -1,3 +1,6 @@
+import uk.co.desirableobjects.featureswitch.InnocentClass
+import org.codehaus.groovy.grails.commons.GrailsControllerClass
+
 class FeatureSwitchGrailsPlugin {
     // the plugin version
     def version = "0.1"
@@ -48,11 +51,20 @@ class FeatureSwitchGrailsPlugin {
     }
 
     def doWithDynamicMethods = { ctx ->
-        // TODO Implement registering dynamic methods to classes (optional)
+
     }
 
     def doWithApplicationContext = { applicationContext ->
-        // TODO Implement post initialization spring config (optional)
+
+        for (controllerClass in application.controllerClasses) {
+            controllerClass.metaClass.withFeature = { String feature, Closure closure ->
+                applicationContext.featureSwitchService.withFeature(feature, closure)
+            }
+            controllerClass.metaClass.withoutFeature = { String feature, Closure closure ->
+                applicationContext.featureSwitchService.withoutFeature(feature, closure)
+            }
+        }
+
     }
 
     def onChange = { event ->

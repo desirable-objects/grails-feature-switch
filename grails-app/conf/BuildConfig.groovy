@@ -31,11 +31,9 @@ grails.project.dependency.resolution = {
         test ':spock:0.6'
 
         build(":tomcat:$grailsVersion",
-              ":release:1.0.0") {
+              ":release:2.0.4") {
             export = false
         }
-
-
 
     }
 }
