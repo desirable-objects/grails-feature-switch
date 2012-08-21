@@ -13,7 +13,7 @@ class FeatureSwitchGrailsPlugin {
     def authorEmail = ""
     def description = 'Allows turning on and off of features'
 
-    def documentation = "https://github.com/aiten/grails-feature-switch"
+    def documentation = "https://github.com/aiten/grails-feature-switch/blob/master/README.markdown"
 
     def license = "APACHE"
 
