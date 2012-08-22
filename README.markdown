@@ -53,3 +53,24 @@ And the same only when the feature is not enabled:
     <h1>The feature is disabled!</h1>
   </feature:disabled>
 ```
+
+Toggling switches via the admin page
+------------------------------------
+
+The admin page is accessible at
+
+```
+http://localhost:8080/your-app/admin/features
+```
+
+Features highlighted in green are enabled, and those in red are disabled. Clicking the 'toggle' button on any feature will disable or enable that particular feature.
+
+If you want to toggle features easily in a test, you can simply hit the url
+
+```
+http://localhost:8080/your-app/admin/feature/myfeature
+```
+
+which will toggle that feature on or off depending on its current state.
+
+These state changes will only last as long as the application is running, the state is not persisted and is read from configuration on start-up.

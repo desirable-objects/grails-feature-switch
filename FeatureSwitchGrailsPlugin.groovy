@@ -1,6 +1,6 @@
 class FeatureSwitchGrailsPlugin {
 
-    def version = "0.1"
+    def version = "0.2"
     def grailsVersion = "2.0 > *"
     def dependsOn = [:]
 
@@ -9,7 +9,7 @@ class FeatureSwitchGrailsPlugin {
     ]
 
     def title = "Feature Switch Plugin"
-    def author = "Antony Jones and Matt Tortolani"
+    def author = "Antony Jones, Matt Tortolani, Tomas Lin, Marcin Erdmann"
     def authorEmail = ""
     def description = 'Allows turning on and off of features'
 
@@ -19,7 +19,9 @@ class FeatureSwitchGrailsPlugin {
 
     def developers = [
         [ name: "Antony Jones", email: "aj/desirableobjects.co.uk" ],
-        [ name: "Matt Tortolani", email:  "hello/doodlemoonch.com", ]
+        [ name: "Matt Tortolani", email:  "hello/doodlemoonch.com" ],
+        [ name: "Tomas Lin" ],
+        [ name: "Marcin Erdmann"]
     ]
 
     def issueManagement = [ system: "WEB", url: "https://github.com/aiten/grails-feature-switch" ]

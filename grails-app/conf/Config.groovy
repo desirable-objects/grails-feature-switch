@@ -7,6 +7,9 @@ features {
     alwaysOff {
         enabled = false
     }
+    'toggle-me' {
+        enabled = true
+    }
 }
 
 log4j = {
@@ -31,3 +34,5 @@ log4j = {
 
     warn   'org.mortbay.log'
 }
+grails.views.default.codec="none" // none, html, base64
+grails.views.gsp.encoding="UTF-8"
