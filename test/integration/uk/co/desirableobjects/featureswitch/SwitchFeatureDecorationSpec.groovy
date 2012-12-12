@@ -7,6 +7,7 @@ class SwitchFeatureDecorationSpec extends IntegrationSpec {
 
     @Autowired
     FeatureSwitchingDummyController featureSwitchingDummyController
+    FeatureSwitchTestingService featureSwitchTestingService
 
     def 'User can use withFeature in a class which is decorated with it'() {
 
@@ -15,6 +16,9 @@ class SwitchFeatureDecorationSpec extends IntegrationSpec {
 
         then:
             featureSwitchingDummyController.response.text == 'this works'
+
+        expect:
+            featureSwitchTestingService.withFeature() == true
 
     }
 
@@ -25,6 +29,9 @@ class SwitchFeatureDecorationSpec extends IntegrationSpec {
 
         then:
             featureSwitchingDummyController.response.text == 'this works'
+
+        expect:
+            featureSwitchTestingService.withoutFeature() == true
 
     }
 
