@@ -5,7 +5,9 @@ class FeatureSwitchGrailsPlugin {
     def dependsOn = [:]
 
     def pluginExcludes = [
-        "grails-app/views/error.gsp"
+        "grails-app/views/error.gsp",
+        "grails-app/services/uk/co/desirableobjects/featureswitch/FeatureSwitchTestingService.groovy",
+        "grails-app/controllers/uk/co/desirableobjects/featureswitch/FeatureSwitchingDummyController.groovy"
     ]
 
     def title = "Feature Switch Plugin"
