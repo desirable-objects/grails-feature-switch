@@ -31,7 +31,7 @@ grails.project.dependency.resolution = {
     dependencies {
         test("org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion")
         test "org.codehaus.geb:geb-spock:$gebVersion"
-
+	    build 'org.codehaus.groovy.modules.http-builder:http-builder:0.6'
     }
 
     plugins {
@@ -40,8 +40,8 @@ grails.project.dependency.resolution = {
              ":geb:$gebVersion"
 
         build(":tomcat:$grailsVersion",
-              ":release:2.0.4") {
-            excludes 'http-builder', 'httpcore', 'httpclient', 'rest-client-builder'
+		      ":rest-client-builder:1.0.3",
+              ":release:2.2.0") {
             export = false
         }
 

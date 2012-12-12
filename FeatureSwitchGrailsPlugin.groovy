@@ -1,6 +1,6 @@
 class FeatureSwitchGrailsPlugin {
 
-    def version = "0.2"
+    def version = "0.4"
     def grailsVersion = "2.0 > *"
     def dependsOn = [:]
 
