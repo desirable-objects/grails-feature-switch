@@ -30,14 +30,19 @@ class FeatureSwitchGrailsPlugin {
 
     def doWithApplicationContext = { applicationContext ->
 
-        for (controllerClass in application.controllerClasses) {
-            controllerClass.metaClass.withFeature = { String feature, Closure closure ->
+        Closure decorate = {
+            it.metaClass.withFeature = { String feature, Closure closure ->
                 applicationContext.featureSwitchService.withFeature(feature, closure)
             }
-            controllerClass.metaClass.withoutFeature = { String feature, Closure closure ->
+            it.metaClass.withoutFeature = { String feature, Closure closure ->
                 applicationContext.featureSwitchService.withoutFeature(feature, closure)
             }
         }
+
+        application.controllerClasses.each(decorate)
+        application.serviceClasses.findAll {
+            it.name != "FeatureSwitch"
+        }.each(decorate)
 
     }
 
