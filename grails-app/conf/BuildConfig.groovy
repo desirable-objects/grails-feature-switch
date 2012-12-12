@@ -41,7 +41,7 @@ grails.project.dependency.resolution = {
 
         build(":tomcat:$grailsVersion",
               ":release:2.0.4") {
-            excludes 'http-builder', 'httpcore', 'httpclient'
+            excludes 'http-builder', 'httpcore', 'httpclient', 'rest-client-builder'
             export = false
         }
 

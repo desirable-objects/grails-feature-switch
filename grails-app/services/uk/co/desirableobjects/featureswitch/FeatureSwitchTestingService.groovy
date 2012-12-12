@@ -2,6 +2,8 @@ package uk.co.desirableobjects.featureswitch
 
 class FeatureSwitchTestingService {
 
+    static transactional = false
+
     Boolean withFeature() {
 
         withFeature("alwaysOn") {
