@@ -1,6 +1,6 @@
 class FeatureSwitchGrailsPlugin {
 
-    def version = "0.4"
+    def version = "0.3"
     def grailsVersion = "2.0 > *"
     def dependsOn = [:]
 
@@ -20,8 +20,8 @@ class FeatureSwitchGrailsPlugin {
     def license = "APACHE"
 
     def developers = [
-        [ name: "Antony Jones", email: "aj/desirableobjects.co.uk" ],
-        [ name: "Matt Tortolani", email:  "hello/doodlemoonch.com" ],
+        [ name: "Antony Jones", email: "aj@dsrbl.dudmail.com" ],
+        [ name: "Matt Tortolani", email: "matt@dsrbl.dudmail.com"],
         [ name: "Tomas Lin" ],
         [ name: "Marcin Erdmann"]
     ]
