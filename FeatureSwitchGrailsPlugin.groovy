@@ -3,6 +3,7 @@ class FeatureSwitchGrailsPlugin {
     def version = "0.4"
     def grailsVersion = "2.0 > *"
     def dependsOn = [:]
+    def observe = ["controllers"]
 
     def pluginExcludes = [
         "grails-app/views/error.gsp",
@@ -30,22 +31,30 @@ class FeatureSwitchGrailsPlugin {
 
     def scm = [ url: "https://github.com/aiten/grails-feature-switch" ]
 
-    def doWithApplicationContext = { applicationContext ->
-
-        Closure decorate = {
-            it.metaClass.withFeature = { String feature, Closure closure ->
-                applicationContext.featureSwitchService.withFeature(feature, closure)
-            }
-            it.metaClass.withoutFeature = { String feature, Closure closure ->
-                applicationContext.featureSwitchService.withoutFeature(feature, closure)
-            }
+    Closure decorate = {
+        it.metaClass.withFeature = { String feature, Closure closure ->
+            applicationContext.featureSwitchService.withFeature(feature, closure)
         }
+        it.metaClass.withoutFeature = { String feature, Closure closure ->
+            applicationContext.featureSwitchService.withoutFeature(feature, closure)
+        }
+    }
 
+    def doWithApplicationContext = { applicationContext ->
         application.controllerClasses.each(decorate)
         application.serviceClasses.findAll {
             it.name != "FeatureSwitch"
         }.each(decorate)
 
     }
+    
+    def onChange = { event ->
+        if (isControllerEvent(event)) {
+            decorate(event.source)
+        }
+    }
 
+    private isControllerEvent(def event) {
+        event.application.controllerClasses.find { it.fullName == event.source.name }
+    }
 }
