@@ -6,6 +6,12 @@ grails.project.target.level = 1.6
 
 grails.release.scm.enabled = false
 
+version {
+    spock = '0.7'
+    geb = '0.9.0-SNAPSHOT'
+    selenium = '2.28.0'
+}
+
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -14,34 +20,30 @@ grails.project.dependency.resolution = {
     }
     log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
 
-    def seleniumVersion = "2.25.0"
-    def gebVersion = "0.7.1"
-
     repositories {
         grailsCentral()
-        // uncomment the below to enable remote dependency resolution
-        // from public Maven repositories
         mavenLocal
         mavenCentral()
-        //mavenRepo "http://snapshots.repository.codehaus.org"
-        //mavenRepo "http://repository.codehaus.org"
-        //mavenRepo "http://download.java.net/maven/2/"
-        //mavenRepo "http://repository.jboss.com/maven2/"
+        mavenRepo 'https://oss.sonatype.org/content/repositories/snapshots'
     }
     dependencies {
-        test("org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion")
-        test "org.codehaus.geb:geb-spock:$gebVersion"
+        test "org.seleniumhq.selenium:selenium-firefox-driver:${version.selenium}",
+             "org.gebish:geb-spock:${version.geb}",
+             "org.spockframework:spock-grails-support:${version.spock}-groovy-2.0"
 	    build 'org.codehaus.groovy.modules.http-builder:http-builder:0.6'
     }
 
     plugins {
 
-        test ':spock:0.6',
-             ":geb:$gebVersion"
+        test ":spock:${version.spock}", {
+            exclude "spock-grails-support"
+        }
 
-        build(":tomcat:$grailsVersion",
+        test ":geb:${version.geb}"
+
+        build ":tomcat:$grailsVersion",
 		      ":rest-client-builder:1.0.3",
-              ":release:2.2.0") {
+              ":release:2.2.0", {
             export = false
         }
 
