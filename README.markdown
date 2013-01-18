@@ -74,3 +74,28 @@ http://localhost:8080/your-app/admin/feature/myfeature
 which will toggle that feature on or off depending on its current state.
 
 These state changes will only last as long as the application is running, the state is not persisted and is read from configuration on start-up.
+
+Toggling switches via a restful URL
+-----------------------------------
+
+The restful urls for enabling and disabling features are:
+
+To enable:
+
+```
+http://localhost:8080/feature-switch/admin/features/<your-feature-name>/enable
+```
+
+To disable:
+
+```
+http://localhost:8080/feature-switch/admin/features/<your-feature-name>/disable
+```
+
+The response from these is a JSON result explaining if the feature has been enabled or disabled:
+
+```
+{"your-feature-name": "disabled"}
+```
+
+Toggling of a non-existent feature will cause a 500 with an IllegalArgumentException including the name of the feature.
