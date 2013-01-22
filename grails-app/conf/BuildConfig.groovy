@@ -27,9 +27,13 @@ grails.project.dependency.resolution = {
         mavenRepo 'https://oss.sonatype.org/content/repositories/snapshots'
     }
     dependencies {
+
         test "org.seleniumhq.selenium:selenium-firefox-driver:${version.selenium}",
              "org.gebish:geb-spock:${version.geb}",
-             "org.spockframework:spock-grails-support:${version.spock}-groovy-2.0"
+             "org.spockframework:spock-grails-support:${version.spock}-groovy-2.0", {
+            export = false
+        }
+
 	    build 'org.codehaus.groovy.modules.http-builder:http-builder:0.6'
     }
 
@@ -37,9 +41,12 @@ grails.project.dependency.resolution = {
 
         test ":spock:${version.spock}", {
             exclude "spock-grails-support"
+            export = false
         }
 
-        test ":geb:${version.geb}"
+        test ":geb:${version.geb}", {
+            export = false
+        }
 
         build ":tomcat:$grailsVersion",
 		      ":rest-client-builder:1.0.3",
