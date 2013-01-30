@@ -1,9 +1,9 @@
 class FeatureSwitchGrailsPlugin {
 
-    def version = "0.6"
+    def version = "0.6.1"
     def grailsVersion = "2.0 > *"
     def dependsOn = [:]
-    def observe = ["controllers"]
+    def observe = ["controllers", "services"]
 
     def pluginExcludes = [
         "grails-app/views/error.gsp",
@@ -49,12 +49,9 @@ class FeatureSwitchGrailsPlugin {
     }
     
     def onChange = { event ->
-        if (isControllerEvent(event)) {
-            decorate(event.source)
-        }
+      if (application.isControllerClass(event.source) || application.isServiceClass(event.source)) {
+        decorate(event.source)
+      }
     }
 
-    private isControllerEvent(def event) {
-        event.application.controllerClasses.find { it.fullName == event.source.name }
-    }
 }
