@@ -1,6 +1,6 @@
 class FeatureSwitchGrailsPlugin {
 
-    def version = "0.6.1"
+    def version = "0.6.2"
     def grailsVersion = "2.0 > *"
     def dependsOn = [:]
     def observe = ["controllers", "services"]
@@ -31,27 +31,27 @@ class FeatureSwitchGrailsPlugin {
 
     def scm = [ url: "https://github.com/aiten/grails-feature-switch" ]
 
-    Closure decorate = {
-        it.metaClass.withFeature = { String feature, Closure closure ->
-            applicationContext.featureSwitchService.withFeature(feature, closure)
-        }
-        it.metaClass.withoutFeature = { String feature, Closure closure ->
-            applicationContext.featureSwitchService.withoutFeature(feature, closure)
-        }
-    }
-
-    def doWithApplicationContext = { applicationContext ->
-        application.controllerClasses.each(decorate)
+    def doWithDynamicMethods = { ctx ->
+        application.controllerClasses.each { decorate(it.clazz, application) }
         application.serviceClasses.findAll {
             it.name != "FeatureSwitch"
-        }.each(decorate)
-
+        }.each { decorate(it.clazz, application) }
     }
     
     def onChange = { event ->
-      if (application.isControllerClass(event.source) || application.isServiceClass(event.source)) {
-        decorate(event.source)
-      }
+        if (application.isControllerClass(event.source) || application.isServiceClass(event.source)) {
+            decorate(event.source, application)
+        }
+    }
+
+    private void decorate(Class c, def application) {
+        def ctx = application.mainContext
+        c.metaClass.withFeature = { String feature, Closure closure ->
+            ctx.featureSwitchService.withFeature(feature, closure)
+        }
+        c.metaClass.withoutFeature = { String feature, Closure closure ->
+            ctx.featureSwitchService.withoutFeature(feature, closure)
+        }
     }
 
 }
