@@ -10,7 +10,7 @@ class FeatureSwitchService {
 
     boolean hasFeature(String feature) {
 
-        return grailsApplication.config.features[feature].enabled
+        return grailsApplication.config.features[feature] && grailsApplication.config.features[feature].enabled
 
     }
 

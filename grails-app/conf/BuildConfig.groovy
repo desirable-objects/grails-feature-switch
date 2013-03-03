@@ -35,6 +35,7 @@ grails.project.dependency.resolution = {
         }
 
 	    build 'org.codehaus.groovy.modules.http-builder:http-builder:0.6'
+		groovy 'org.codehaus.groovy:groovy-all:2.0.0'
     }
 
     plugins {
