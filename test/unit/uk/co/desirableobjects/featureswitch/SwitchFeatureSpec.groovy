@@ -51,6 +51,15 @@ class SwitchFeatureSpec extends Specification {
 
     }
 
+    def 'checking status for a feature does not add it to config'() {
+
+        when:
+            !service.hasFeature('boys')
+		then:	
+			!service.grailsApplication.config.features.boys
+
+    }
+
     @Unroll
     def 'User can use withFeature in a class which is decorated with it, where feature = #enabled'() {
 
