@@ -12,8 +12,8 @@ class SwitchFeatureSpec extends Specification {
 
     void setup() {
 
-        InnocentClass.metaClass.withFeature = { String feature, Closure closure -> service.withFeature(feature, closure) }
-        InnocentClass.metaClass.withoutFeature = { String feature, Closure closure -> service.withoutFeature(feature, closure) }
+        InnocentClass.metaClass.withFeature = { String feature, Closure closure, overrides = [:]-> service.withFeature(feature, closure, overrides) }
+        InnocentClass.metaClass.withoutFeature = { String feature, Closure closure, overrides = [:] -> service.withoutFeature(feature, closure, overrides) }
 
     }
 
@@ -86,6 +86,18 @@ class SwitchFeatureSpec extends Specification {
         where:
             enabled << [true, false]
 
+    }
+
+    @Unroll
+    def 'grailsConfiguration can be overriden enabled = #enabled' (boolean enabled) {
+        given:
+            service.grailsApplication.config.features.eggs.enabled = !enabled
+        expect:
+            service.hasFeature('eggs', ['eggs': enabled]) == enabled
+        and:
+            new InnocentClass().testWithOverride(enabled)
+        where:
+            enabled << [true, false]
     }
 
 }
