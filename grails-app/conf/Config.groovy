@@ -1,5 +1,9 @@
 // configuration for plugin testing - will not be included in the plugin zip
 
+featuresConfig {
+    allowToggling = true
+}
+
 features {
     alwaysOn {
         enabled = true

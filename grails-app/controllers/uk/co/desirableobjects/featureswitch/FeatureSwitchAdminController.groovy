@@ -27,20 +27,32 @@ class FeatureSwitchAdminController {
 
 	}
 
+    private def modifyFeature(String feature, boolean enabled, Closure renderSuccess) {
+        if (grailsApplication.config.featuresConfig.allowToggling) {
+            grailsApplication.config.features[feature].enabled = enabled
+            renderSuccess()
+        } else {
+            response.status = 403
+            render "Modifying features at run time has been disabled"
+        }
+    }
+
 	def toggle(String feature) {
-
-		grailsApplication.config.features[feature].enabled = !grailsApplication.config.features[feature].enabled
-		redirect action: 'switches'
-
+        boolean toggled = !grailsApplication.config.features[feature].enabled
+        modifyFeature feature, toggled, {
+            redirect action: 'switches'
+        }
 	}
 
     def enable(String feature) {
-        grailsApplication.config.features[feature].enabled = true
-        render text: [(feature): 'enabled'] as JSON
+        modifyFeature feature, true, {
+            render text: [(feature): 'enabled'] as JSON
+        }
     }
 
     def disable(String feature) {
-        grailsApplication.config.features[feature].enabled = false
-        render text: [(feature): 'disabled'] as JSON
+        modifyFeature feature, false, {
+            render text: [(feature): 'disabled'] as JSON
+        }
     }
 }
