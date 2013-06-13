@@ -12,8 +12,8 @@ class SwitchFeatureSpec extends Specification {
 
     void setup() {
 
-        InnocentClass.metaClass.withFeature = { String feature, Closure closure, overrides = [:]-> service.withFeature(feature, closure, overrides) }
-        InnocentClass.metaClass.withoutFeature = { String feature, Closure closure, overrides = [:] -> service.withoutFeature(feature, closure, overrides) }
+        InnocentClass.metaClass.withFeature = { String feature, overrides = [:], Closure closure -> service.withFeature(feature, overrides, closure) }
+        InnocentClass.metaClass.withoutFeature = { String feature, overrides = [:], Closure closure -> service.withoutFeature(feature, overrides, closure) }
 
     }
 

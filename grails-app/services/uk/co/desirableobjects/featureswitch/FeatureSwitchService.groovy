@@ -13,7 +13,7 @@ class FeatureSwitchService {
             (grailsApplication.config.features[feature] && grailsApplication.config.features[feature].enabled)
     }
 
-    def withFeature(String feature, Closure closure, overrides = null) {
+    def withFeature(String feature, overrides = null, Closure closure) {
         executeFeatureConditionally(feature, true, closure, overrides)
     }
 
@@ -23,7 +23,7 @@ class FeatureSwitchService {
         }
     }
 
-    def withoutFeature(String feature, Closure closure, overrides = null) {
+    def withoutFeature(String feature, overrides = null, Closure closure) {
         executeFeatureConditionally(feature, false, closure, overrides)
     }
 

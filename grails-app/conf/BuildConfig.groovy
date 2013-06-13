@@ -8,8 +8,8 @@ grails.release.scm.enabled = false
 
 version {
     spock = '0.7'
-    geb = '0.9.0-SNAPSHOT'
-    selenium = '2.28.0'
+    geb = '0.9.0'
+    selenium = '2.33.0'
 }
 
 grails.project.dependency.resolution = {

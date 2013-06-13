@@ -20,9 +20,9 @@ class InnocentClass {
 
     def testWithOverride(boolean override) {
         boolean result = !override
-        withFeature('eggs', {
+        withFeature('eggs', [eggs:override], {
             result = true
-        }, [eggs:override])
+        })
         return result
     }
 }
