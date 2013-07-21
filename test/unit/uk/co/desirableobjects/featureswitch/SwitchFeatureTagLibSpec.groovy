@@ -10,6 +10,7 @@ class SwitchFeatureTagLibSpec extends Specification {
     void setup() {
 
         tagLib.featureSwitchService = Mock(FeatureSwitchService)
+        pageScope.features = null
 
     }
 
@@ -20,7 +21,7 @@ class SwitchFeatureTagLibSpec extends Specification {
             String output = applyTemplate('<feature:enabled feature="colons">Colons!</feature:enabled>')
 
         then:
-            1 * tagLib.featureSwitchService.hasFeature('colons') >> { return enabled }
+            1 * tagLib.featureSwitchService.hasFeature('colons', pageScope.features) >> { return enabled }
             0 * _
 
         and:
@@ -40,7 +41,7 @@ class SwitchFeatureTagLibSpec extends Specification {
             String output = applyTemplate('<feature:disabled feature="colons">Colons!</feature:disabled>')
 
         then:
-            1 * tagLib.featureSwitchService.hasFeature('colons') >> { return enabled }
+            1 * tagLib.featureSwitchService.hasFeature('colons', pageScope.features) >> { return enabled }
             0 * _
 
         and:

@@ -16,7 +16,7 @@ class FeatureSwitchTagLib {
 
         String feature = attrs.feature
 
-        if (featureSwitchService.hasFeature(feature) == condition) {
+        if (featureSwitchService.hasFeature(feature, pageScope.features) == condition) {
             out << body()
         }
     }

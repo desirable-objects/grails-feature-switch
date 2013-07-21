@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Feature Switches Admin Page</title>
-  <link rel="stylesheet" type="text/css" href="../css/feature-switch.css" />
+  <link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'feature-switch.css')}" />
 </head>
 <body>
 
