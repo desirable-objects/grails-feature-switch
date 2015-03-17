@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/aiten/grails-feature-switch.png?branch=master)](https://travis-ci.org/aiten/grails-feature-switch)
+[![Build Status](https://travis-ci.org/antony/grails-feature-switch.png?branch=master)](https://travis-ci.org/antony/grails-feature-switch)
 Feature Switcher Plugin for Grails
 ==================================
 
