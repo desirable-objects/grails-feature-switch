@@ -1,6 +1,6 @@
 package uk.co.desirableobjects.featureswitch
 
-import org.codehaus.groovy.grails.commons.GrailsApplication
+import grails.core.GrailsApplication
 
 class FeatureSwitchService {
 
@@ -9,12 +9,15 @@ class FeatureSwitchService {
     GrailsApplication grailsApplication
 
     boolean hasFeature(String feature, Map<String, Boolean> overrides = null) {
-        return overrides?.containsKey(feature) ? overrides[feature] :
-            (grailsApplication.config.features[feature] && grailsApplication.config.features[feature].enabled)
+        overrides?.containsKey(feature) ? overrides[feature] : (conf[feature] && conf[feature].enabled)
     }
 
     def withFeature(String feature, overrides = null, Closure closure) {
         executeFeatureConditionally(feature, true, closure, overrides)
+    }
+
+    def withoutFeature(String feature, overrides = null, Closure closure) {
+        executeFeatureConditionally(feature, false, closure, overrides)
     }
 
     private executeFeatureConditionally(String feature, boolean condition, Closure closure, overrides = null) {
@@ -23,8 +26,7 @@ class FeatureSwitchService {
         }
     }
 
-    def withoutFeature(String feature, overrides = null, Closure closure) {
-        executeFeatureConditionally(feature, false, closure, overrides)
+    private getConf() {
+        grailsApplication.config.features
     }
-
 }

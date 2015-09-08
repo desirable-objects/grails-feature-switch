@@ -1,0 +1,23 @@
+.switched-on {
+    background-color: #0f0;
+}
+.switched-off {
+    background-color: #f00;
+}
+body {
+    font-family: "Lucida Sans", sans-serif;
+}
+button {
+    border: 0;
+}
+ul {
+    list-style-type: none;
+}
+ul li {
+    padding: 1em;
+    margin: 0.2em;
+    border: 0.1em dotted #444;
+}
+ul li button {
+    float: right;
+}
