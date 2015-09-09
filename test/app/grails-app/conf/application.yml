@@ -1,0 +1,38 @@
+grails:
+   profile: web
+info:
+   app:
+      name: '@info.app.name@'
+      version: '@info.app.version@'
+      grailsVersion: '@info.app.grailsVersion@'
+spring:
+   groovy:
+      template:
+         check-template-location: false
+server:
+   port: 8238
+hibernate:
+   cache:
+      queries: false
+      use_second_level_cache: true
+      use_query_cache: false
+      region.factory_class: 'org.hibernate.cache.ehcache.EhCacheRegionFactory'
+dataSource:
+   dbCreate: update
+   driverClassName: org.h2.Driver
+   password:
+   pooled: true
+   url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+   username: sa
+
+featuresConfig:
+   allowToggling: true
+   adminLayout: application
+
+features:
+   alwaysOn:
+      enabled: true
+   alwaysOff:
+      enabled: false
+   toggle_me:
+      enabled: true
