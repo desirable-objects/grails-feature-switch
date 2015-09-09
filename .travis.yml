@@ -2,4 +2,4 @@ language: java
 jdk:
   - oraclejdk7
 
-script: "./grailsw test-app unit: integration:"
+script: "pushd test/app && grails test && popd"
