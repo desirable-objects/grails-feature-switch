@@ -12,12 +12,13 @@ class FeatureSwitchGrailsPlugin extends Plugin {
 	def license = "APACHE"
 	def developers = [
 		[name: "Antony Jones", email: "aj@dsrbl.dudmail.com"],
+		[name: "Burt Beckwith"],
 		[name: "Matt Tortolani", email: "matt@dsrbl.dudmail.com"],
 		[name: "Tomas Lin"],
 		[name: "Marcin Erdmann"]
 	]
-	def issueManagement = [url: "https://github.com/aiten/grails-feature-switch/issues"]
-	def scm = [url: "https://github.com/aiten/grails-feature-switch"]
+	def issueManagement = [url: "https://github.com/antony/grails-feature-switch/issues"]
+	def scm = [url: "https://github.com/antony/grails-feature-switch"]
 
 	void doWithDynamicMethods() {
 		grailsApplication.controllerClasses.each { decorate(it.clazz) }

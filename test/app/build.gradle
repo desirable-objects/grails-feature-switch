@@ -56,7 +56,7 @@ dependencies {
 	compile 'org.hibernate:hibernate-ehcache'
 	compile 'org.grails.plugins:scaffolding'
 
-	compile 'org.grails.plugins:feature-switch:TODO'
+	compile 'org.grails.plugins:feature-switch:1.0'
 
 	runtime 'org.grails.plugins:asset-pipeline:3.0.8'
 
